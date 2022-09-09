@@ -1,0 +1,8 @@
+-cp ..
+-cp src
+-dce full
+-D analyzer-optimize
+-D js-es=6
+--macro exclude('haxe.iterators.ArrayIterator')
+-main Main
+--js bin/main.js

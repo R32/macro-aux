@@ -1,0 +1,11 @@
+{
+	"name": "macro-tools-ya",
+	"classPath": "",
+	"version": "0.1.0",
+	"url": "https://github.com/R32/macro-tools/",
+	"license": "MIT",
+	"tags": ["macro"],
+	"description": "Yet another collection of macro utilities",
+	"releasenote": "",
+	"contributors": ["r32"]
+}
