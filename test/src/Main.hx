@@ -2,6 +2,7 @@ package;
 
 class Main {
 	static function main() {
-		trace("hello world!");
+		var version = tools.GitVersion.get(true);
+		trace(version);
 	}
 }
