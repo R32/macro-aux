@@ -12,11 +12,10 @@ class GitVersion {
 	* Retrieves the git hash string from current directory.
 	*/
 	macro static public function get( branch : Bool = false, len : Int = 7 ) {
-		var unknown = "unkown";
-		var pos = Context.currentPos();
 		#if display
-		return macro $v{ unknown };
+		return macro $v{ "unkown" };
 		#end
+		var pos = Context.currentPos();
 		var info = gitHashInfo();
 		var desc = (branch ? info.branch + "@" : "") + info.hash.substr(0, len);
 		return macro @:pos(pos) $v{ desc };
@@ -35,16 +34,11 @@ class GitVersion {
 	static function gitDirectory( dir : String, rec = 8 ) : String {
 		if (rec == 0)
 			Context.fatalError("[macro-tools]: No git repository.", Context.currentPos());
-
 		var char = dir.charCodeAt(dir.length - 1);
-
 		var slash = char == "/".code || char == "\\".code ? "" : "/";
-
 		var ret = dir + slash + ".git";
-
 		if (FileSystem.exists(ret))
 			return ret;
-
 		return gitDirectory(dir + slash + "..", rec - 1);
 	}
 #end
