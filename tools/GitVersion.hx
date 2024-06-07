@@ -8,9 +8,9 @@ import sys.io.File;
 
 class GitVersion {
 
-	/**
-	* Retrieves the git hash string from current directory.
-	*/
+	/*
+	 * Retrieves the git hash string from current directory.
+	 */
 	macro static public function get( branch : Bool = false, len : Int = 7 ) {
 		#if display
 		return macro $v{ "unkown" };
