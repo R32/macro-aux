@@ -1,11 +1,11 @@
 {
-	"name": "macro-tools-ya",
+	"name": "macro-aux",
 	"classPath": "",
 	"version": "0.1.0",
-	"url": "https://github.com/R32/macro-tools/",
+	"url": "https://github.com/R32/macro-aux/",
 	"license": "MIT",
 	"tags": ["macro"],
-	"description": "Yet another collection of macro utilities",
+	"description": "Collection of macro auxiliaries",
 	"releasenote": "",
 	"contributors": ["r32"]
 }

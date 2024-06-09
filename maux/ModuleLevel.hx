@@ -1,4 +1,4 @@
-package tools;
+package maux;
 
 import haxe.macro.Context;
 import haxe.macro.Type;
@@ -13,12 +13,12 @@ import haxe.macro.Expr;
  *
  * Strip the specified module-level prefixes:
  * ```
- * --macro tools.ModuleLevel.strip(['Main', 'org.Foo', ...])
+ * --macro maux.ModuleLevel.strip(['Main', 'org.Foo', ...])
  * ```
  *
  * Strip all module-level prefixes, including standard and third-party libraries:
  * ```
- * --macro tools.ModuleLevel.strip()
+ * --macro maux.ModuleLevel.strip()
  * ```
  * TODO : Currently, there is no mechanism to distinguish between user-defined modules and standard library modules.
  *

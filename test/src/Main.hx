@@ -2,7 +2,7 @@ package;
 
 class Main {
 	static function main() {
-		var version = tools.GitVersion.get(true);
+		var version = maux.GitVersion.get(true);
 		trace(version);
 
 		var error = new js.lib.Error("bitFields Error");
@@ -26,7 +26,7 @@ class Main {
 }
 
 #if !macro
-@:build(tools.BitFields.build())
+@:build(maux.BitFields.build())
 #end
 extern abstract RGB(Int) {
 

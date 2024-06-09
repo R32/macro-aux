@@ -1,16 +1,14 @@
-macro tools
+macro aux
 ------
 
-A collection of haxe macro utilities
-
-## tools
+A collection of haxe macro auxiliaries
 
 ### GitVersion
 
 Retrieves the git hash string from current directory.
 
 ```haxe
-var version = tools.GitVersion.get(true);
+var version = maux.GitVersion.get(true);
 
 // js output:
 var version = "master@b3bc166";
@@ -22,7 +20,7 @@ A simple bit fileds build tool.
 
 ```haxe
 #if !macro
-@:build(tools.BitFields.build())
+@:build(maux.BitFields.build())
 #end
 abstract RGB(Int) {
 
@@ -61,8 +59,8 @@ build.hxml :
 
 ```bash
 -main Main
--lib macro-tools-ya
---macro tools.ModuleLevel.strip()
+-lib macro-aux
+--macro maux.ModuleLevel.strip()
 --js main.js
 ```
 

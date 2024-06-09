@@ -1,4 +1,4 @@
-package tools;
+package maux;
 
 #if macro
 import haxe.macro.Context;
@@ -13,7 +13,7 @@ import haxe.macro.Type;
  *
  * ```haxe
  * #if !macro
- * @:build(tools.BitFields.build())
+ * @:build(maux.BitFields.build())
  * #end
  * abstract RGB(Int) {
  *

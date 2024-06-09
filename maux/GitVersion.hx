@@ -1,4 +1,4 @@
-package tools;
+package maux;
 
 #if macro
 import haxe.macro.Context;
@@ -33,7 +33,7 @@ class GitVersion {
 
 	static function gitDirectory( dir : String, rec = 8 ) : String {
 		if (rec == 0)
-			Context.fatalError("[macro-tools]: No git repository.", Context.currentPos());
+			Context.fatalError("[macro-aux]: No git repository.", Context.currentPos());
 		var char = dir.charCodeAt(dir.length - 1);
 		var slash = char == "/".code || char == "\\".code ? "" : "/";
 		var ret = dir + slash + ".git";
