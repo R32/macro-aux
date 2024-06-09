@@ -1,10 +1,26 @@
 package;
 
-class Main {
-	static function main() {
-		var version = maux.GitVersion.get(true);
-		trace(version);
+import maux.ES.*;
 
+class Main {
+
+	var count = 0;
+
+	public function new() {
+		var doc = js.Browser.document;
+		var div = doc.createElement("div");
+		doc.body.appendChild(div);
+
+		TEXT(div) = maux.GitVersion.get(true);
+		trace(TEXT(div));
+		div.onclick = BIND(log);
+	}
+
+	function log() {
+		trace(count++);
+	}
+
+	function bitfield() {
 		var error = new js.lib.Error("bitFields Error");
 		for(i in 0...101) {
 			var rand = Std.random(0xFFFFFF + 1);
@@ -21,7 +37,10 @@ class Main {
 			if (!(rgb.r == b && rgb.g == r && rgb.b == g))
 				throw error;
 		}
-		trace("bitFields done!");
+	}
+	static function main() {
+		var main = new Main();
+		main.bitfield();
 	}
 }
 

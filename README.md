@@ -75,3 +75,7 @@ function main() {
 }
 main();
 ```
+
+### ES
+
+[Some utility functions for Javascript](maux/ES.hx)
