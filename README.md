@@ -76,6 +76,12 @@ function main() {
 main();
 ```
 
+### CStruct
+
+It's used to construct a raw data block similar to the C language.
+
+[CStruct](maux/CStruct.hx)
+
 ### ES
 
 [Some utility functions for Javascript](maux/ES.hx)
