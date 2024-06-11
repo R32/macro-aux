@@ -21,7 +21,7 @@ class ES {
 	macro public static function TEXT(node) return macro ($node: js.html.Element).innerText;
 
 	/*
-	 * Uses native ".bind" to instead of haxe $bind
+	 * Uses es5 native ".bind" to instead of haxe $bind
 	 *
 	 * ```haxe
 	 * btn.onclick = BIND(onClick);
@@ -34,11 +34,39 @@ class ES {
 	 * ```
 	 */
 	macro public static function BIND(func) {
+		var e = avoid_bind(func);
+		return switch (e) {
+		case macro (($ctx : $d).$name : $ct):
+			macro @:pos(e.pos) (($ctx : $d).$name.bind($ctx) : $ct);
+		default:
+			func;
+		}
+	}
+
+	/*
+	 * Don't do $bind on member function of Instance.
+	 *
+	 * ```haxe
+	 * btn.onclick = UNBIND(onClick);
+	 * ```
+	 *
+	 * output :
+	 *
+	 * ```js
+	 * btn.onclick = this.onClick;
+	 * ```
+	 */
+	public static function UNBIND( func ) {
+		return avoid_bind(func);
+	}
+#if macro
+	static function avoid_bind( func : Expr ) {
 		if (Context.definedValue("target.name") != "js")
 			return func;
 		var pos = Context.currentPos();
+		var fnt = Context.typeof(func);
 		var exp = Context.getExpectedType();
-		if (exp != null && !Context.unify(Context.typeof(func), exp))
+		if (exp != null && !Context.unify(fnt, exp))
 			Context.fatalError(func.toString() + " should be " + exp.toString(), pos);
 		var ctx : Expr;
 		var name : String;
@@ -68,6 +96,8 @@ class ES {
 			}
 		default:
 		}
-		return macro @:pos(pos) ($ctx:Dynamic).$name.bind($ctx);
+		var ct = Context.toComplexType(fnt);
+		return macro @:pos(pos) (($ctx : Dynamic).$name : $ct);
 	}
+#end
 }

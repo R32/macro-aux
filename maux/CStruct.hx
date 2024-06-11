@@ -22,8 +22,8 @@ import haxe.macro.Context;
  * 	private inline function get_cstr() : String {
  * 		return this.dummy_getstring(offset_cstr, count_cstr);
  * 	}
- *	inline function new() {
- *		this = dummy_alloc(CAPACITY); // CAPACITY == sizeof(MyStruct)
+ * 	inline function new() {
+ * 		this = dummy_alloc(CAPACITY); // CAPACITY == sizeof(MyStruct)
  * 	}
  * }
  * ```

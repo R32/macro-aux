@@ -14,6 +14,7 @@ class Main {
 		TEXT(div) = maux.GitVersion.get(true);
 		trace(TEXT(div));
 		div.onclick = BIND(log);
+		div.onclick = UNBIND(log);
 	}
 
 	function log() {
