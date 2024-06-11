@@ -18,7 +18,7 @@ class ES {
 	 * TEXT(label) = "Bob";
 	 * ```
 	 */
-	macro public static function TEXT(node) return macro ($node: js.html.Element).innerText;
+	macro public static function TEXT(node) return macro ($node : js.html.Element).innerText;
 
 	/*
 	 * Uses es5 native ".bind" to instead of haxe $bind
@@ -56,18 +56,13 @@ class ES {
 	 * btn.onclick = this.onClick;
 	 * ```
 	 */
-	public static function UNBIND( func ) {
+	macro public static function UNBIND( func ) {
 		return avoid_bind(func);
 	}
 #if macro
 	static function avoid_bind( func : Expr ) {
 		if (Context.definedValue("target.name") != "js")
 			return func;
-		var pos = Context.currentPos();
-		var fnt = Context.typeof(func);
-		var exp = Context.getExpectedType();
-		if (exp != null && !Context.unify(fnt, exp))
-			Context.fatalError(func.toString() + " should be " + exp.toString(), pos);
 		var ctx : Expr;
 		var name : String;
 		var type : haxe.macro.Type;
@@ -96,8 +91,8 @@ class ES {
 			}
 		default:
 		}
-		var ct = Context.toComplexType(fnt);
-		return macro @:pos(pos) (($ctx : Dynamic).$name : $ct);
+		var fct = Context.toComplexType( Context.typeof(func) );
+		return macro @:pos(func.pos) (($ctx : Dynamic).$name : $fct);
 	}
 #end
 }
